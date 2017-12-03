@@ -16,14 +16,7 @@ var mouse = {
 	x: innerWidth / 2,
 	y: innerHeight / 2 
 };
-/*
-var colors = [
-	'#2185C5',
-	'#7ECEFD',
-	'#FFF6E5',
-	'#FF7F66'
-];
-*/
+
 var colors = [
 	'#6BCAE2',
 	'#51A5BA',
@@ -66,36 +59,60 @@ function planet(x, y, dy, dx, radius, color) {
 	this.dx = dx
 	this.radius = radius;
 	this.color = color;
+	this.right = true
+	this.up = true
 
-
+	this.grav = 3
+	this.up_grav = 1.5
 	this.update = function() {
-		/*
-		if(this.y + this.radius + this.dy > canvas.height){
-			this.dy = -this.dy * friction;
-
-
-		}else{
-			this.dy += gravity;
-		}
-
-		if(this.x + this.radius + this.dx > canvas.width
-			|| this.x - this.radius <= 0){
-			this.dx = -this.dx;
-		}
-
-		this.y += this.dy;
-		this.x += this.dx
-		*/
+	
 		this.draw();
 	};
 
-	this.update2 = function(){
-		right = false 
+	this.downRange = function(){
 
-
-		if(!right){
-			this.x += 1;
+		if ( planetArr[1].y - this.y > 150){
+			this.up = false
+		}else if( this.y - planetArr[1].y > 150){
+			this.up = true
+		}else{
+			return
 		}
+	}
+
+	this.update2 = function(){
+		
+		this.downRange()
+		if(this.right){
+			this.x += this.grav;
+			
+			//idea: decrease the acceleation up to range values  and when == to range value turn around increase wen far away
+
+			//for up and down movment
+			if ( ! this.up ){ //reach a particular range start to turn around
+				this.y += this.up_grav;
+			}else{
+				this.y -= this.up_grav;
+			}
+
+			//for right and left
+			if ( this.x  - planetArr[1].x  > 350 ){
+				this.right = false
+			}
+
+		}else{
+			if ( planetArr[1].x  - this.x  > 350 ){
+				this.right = true
+			}
+			this.x -= this.grav;
+			//For up and down movement
+			if ( ! this.up ){ //reach a particular range start to turn around
+				this.y += this.up_grav;
+			}else{
+				this.y -= this.up_grav;
+			}
+		}
+
 		this.draw()
 	}
 	//Draw planet
@@ -127,7 +144,7 @@ function init() {
 
 		planetArr.push(new planet(200,200,0,0,radius,color));
 
-		planetArr.push(new planet(800,200,0,0,radius,"Yellow"));
+		planetArr.push(new planet(500,200,0,0,radius,"Yellow"));
 		
 	}
 }

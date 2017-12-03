@@ -5,32 +5,102 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
+  <link rel="stylesheet" href="styles/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+</head>
+<body>
+<body>
+  <div id="universe">
+    <div id="galaxy">
+      <div id="sun">
+      </div>
+      <div id="mercury" class="orbit">
+        <div id="axis" class="planet"> <div class="planet"></div> </div>
+      </div>      
+    </div>
+  </div>
+
+<div id="legend">
+    <h4 style="color:#FFFFF2;">
+      <div style="opacity:100;font: inherit;z-index:1820;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Orbital_eccentricity">Eccentricity</a>
+          <span class="tooltiptext"> Eccentricity is, simply, the shape of the Earth's orbit around the Sun. This constantly fluctuating, orbital shape ranges between more and less elliptical (0 to 5% ellipticity) on a cycle of about 100,000 years.</span>
+      </div>
+
+  </h4> 
+  <h4 style="color:#41D3BD;">
+      <div style="opacity:100;font: inherit;z-index:1819;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Axial_tilt"> Axial Tilt</a>
+                <span class="tooltiptext"> Axial tilt, the second of the three Milankovitch Cycles, is the inclination of the Earth's axis in relation to its plane of orbit around the Sun. Oscillations in the degree of Earth's axial tilt occur on a periodicity of 41,000 years from 21.5 to 24.5 degrees.</span>
+      </div>
+  </h4>
+    <h4 style="color:#407899;">
+      <div style="opacity:100;font: inherit;z-index:1818;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Precession"> Precession</a>
+          <span class="tooltiptext">The third and final of the Milankovitch Cycles is Earth's precession. Precession is the Earth's slow wobble as it spins on axis. This wobbling of the Earth on its axis can be likened to a top running down, and beginning to wobble back and forth on its axis. The precession of Earth wobbles from pointing at Polaris (North Star) to pointing at the star Vega. When this shift to the axis pointing at Vega occurs, Vega would then be considered the North Star. This top-like wobble, or precession, has a periodicity of 23,000 years.</span>
+      </div>
+
+    </h4>
+</div>
+
+
+<div class="container">
+  <div id="time_table">
+      <h2> Time: </h2>
+      <div class="progress">
+        <div class="progress-bar" id="progressbar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" >
+          <span class="sr-only">70% Complete</span>
+        </div>
+
+        
+      </div>
+      <span style="float:left;"> <h4  style="color:#FFFFF2;">Year:   0 </h4> </span>
+
+        <span class="AP" style="left:40%;"> <h4  style="color:#41D3BD;"> Year:   41k </h4> </span>
+
+        <span class="AP" style="left:60%;"> <h4  style="color:#41D3BD;"> Year:   82k </h4> </span>
+
+
+
+        <span class="AP" style="left:20%;"> <h4  style="color:#407899;"> Year:   23k </h4> </span>
+        <span class="AP" style="left:35%;"> <h4 style="color:#407899;"> Year:   46k </h4> </span>
+        <span class="AP" style="left:50%;"> <h4 style="color:#407899;"> Year:   69k </h4> </span>
+        <span class="AP" style="left:65%;"> <h4 style="color:#407899;"> Year:   92k </h4> </span>
+        
+      <span style="float:right;"> <h4  style="color:#FFFFF2;"> Year: 100k  </h4> </span>
+  </div>
+
+</div>
+</body>
+
   <script type="text/javascript">
+    $(document).ready(function(){
+        console.log("Lets get started");
+        
+        const obj = new start();
+
+    });
+
+    function start(){
+      console.log("start class init");
+      var time = 0;
+      var delayInMilliseconds = 500; //1 second
+      var t = setInterval(update, delayInMilliseconds);
+      var progressBar = $("#progressbar");
+
+
+      function update(){
+        console.log(String(time) + '%');
+          if( time == 100)
+            time = 0
+
+          progressBar.css({'width': String(time) + '%'});
+          time+=5;
+      }
+
+
+    }
+
 
 
   </script>
-</head>
-<body>
-
-<div class="container">
-  <div class="jumbotron">
-    <h1>Welcome To Oceans</h1> 
-    <p>A tool for demonstrating some Milankovich cyles</p> 
-  </div>
-  
-</div>
-
-<div >
-
-<canvas id="canvas">
-
-</canvas>
-
-</body>
-  <script src="js/canvas.js"></script>
-
 </html>

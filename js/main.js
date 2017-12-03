@@ -2,13 +2,7 @@ var http = require('http');
 //var express  = require('express')
 var fs = require('fs');
 
-console.log("here");
-
-
-
-
 http.createServer(function (req, res) {
-	
     fs.readFile('/../index.html', function(err, data) {
     	res.writeHead(200, {'Content-Type': 'text/html'});
     	res.write(data);
