@@ -21,25 +21,42 @@
       </div>      
     </div>
   </div>
+<div id="info">
+<h1 style="color:#fff;padding-left:5px" > Info: </h1>
+  <div id="legend">
+      <h4 style="color:#FFFFF2;">
+        <div style="opacity:100;font: inherit;z-index:1820;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Orbital_eccentricity">Eccentricity</a>
+            <span class="tooltiptext"> Eccentricity is, simply, the shape of the Earth's orbit around the Sun. This constantly fluctuating, orbital shape ranges between more and less elliptical (0 to 5% ellipticity) on a cycle of about 100,000 years.</span>
+        </div>
 
-<div id="legend">
-    <h4 style="color:#FFFFF2;">
-      <div style="opacity:100;font: inherit;z-index:1820;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Orbital_eccentricity">Eccentricity</a>
-          <span class="tooltiptext"> Eccentricity is, simply, the shape of the Earth's orbit around the Sun. This constantly fluctuating, orbital shape ranges between more and less elliptical (0 to 5% ellipticity) on a cycle of about 100,000 years.</span>
-      </div>
-
-  </h4> 
-  <h4 style="color:#41D3BD;">
-      <div style="opacity:100;font: inherit;z-index:1819;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Axial_tilt"> Axial Tilt</a>
-                <span class="tooltiptext"> Axial tilt, the second of the three Milankovitch Cycles, is the inclination of the Earth's axis in relation to its plane of orbit around the Sun. Oscillations in the degree of Earth's axial tilt occur on a periodicity of 41,000 years from 21.5 to 24.5 degrees.</span>
-      </div>
-  </h4>
-    <h4 style="color:#407899;">
-      <div style="opacity:100;font: inherit;z-index:1818;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Precession"> Precession</a>
-          <span class="tooltiptext">The third and final of the Milankovitch Cycles is Earth's precession. Precession is the Earth's slow wobble as it spins on axis. This wobbling of the Earth on its axis can be likened to a top running down, and beginning to wobble back and forth on its axis. The precession of Earth wobbles from pointing at Polaris (North Star) to pointing at the star Vega. When this shift to the axis pointing at Vega occurs, Vega would then be considered the North Star. This top-like wobble, or precession, has a periodicity of 23,000 years.</span>
-      </div>
-
+    </h4> 
+    <h4 style="color:#41D3BD;">
+        <div style="opacity:100;font: inherit;z-index:1819;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Axial_tilt"> Axial Tilt</a>
+                  <span class="tooltiptext"> Axial tilt, the second of the three Milankovitch Cycles, is the inclination of the Earth's axis in relation to its plane of orbit around the Sun. Oscillations in the degree of Earth's axial tilt occur on a periodicity of 41,000 years from 21.5 to 24.5 degrees.</span>
+        </div>
     </h4>
+      <h4 style="color:#407899;">
+        <div style="opacity:100;font: inherit;z-index:1818;" class="tooltip"> <a href="https://en.wikipedia.org/wiki/Precession"> Precession</a>
+            <span class="tooltiptext">The third and final of the Milankovitch Cycles is Earth's precession. Precession is the Earth's slow wobble as it spins on axis. This wobbling of the Earth on its axis can be likened to a top running down, and beginning to wobble back and forth on its axis. The precession of Earth wobbles from pointing at Polaris (North Star) to pointing at the star Vega. When this shift to the axis pointing at Vega occurs, Vega would then be considered the North Star. This top-like wobble, or precession, has a periodicity of 23,000 years.</span>
+        </div>
+
+      </h4>
+  </div>
+
+  <h3 style="color:#fff;"> Time: <span id="time_insert">  </span> </h3>
+  <h3 style="color:#fff;"> Energy of the ocean:  <p><span id="energy_insert"> 
+
+<div class="progress">
+  <div id="ocean_energy" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" >
+   
+  </div>
+</div>
+
+
+   </span> </h3>
+
+
 </div>
 
 
@@ -89,11 +106,50 @@
 
 
       function update(){
-        console.log(String(time) + '%');
+
+
+
+        //console.log(String(time) + '%');
+        //change time if need be
           if( time == 100)
             time = 0
+        //add time to header
+          $("#time_insert").text(String(time) + "k yrs");
+        //add energy to energy header
+          if(time != 0){
+            let beta = Math.floor(time/10) 
+            if (time >= 75){
+              beta += 20
+            }
+            $("#ocean_energy").css({"width":"+=" + String(beta) + "px"});
+          }else{
+            $("#ocean_energy").css({"width":"0px"});
 
+          }
+
+          let alpha = time / 100 ;
+          
+          if(time == 25 )
+            $("#axis").css({"transform":"rotate(23deg)"});
+          else if (time  ==  50)
+             $("#axis").css({"transform":"rotate(35deg)"});
+          else if(time == 75)
+            $("#axis").css({"transform":"rotate(10deg)"});
+
+
+
+
+          if(time > 50)
+            alpha *= -1;
+          if(time< 50)
+            alpha *= 1;
+          if(time == 0)
+            $("#mercury.orbit").css({"width":"14em","height":"14em"});  
+
+          console.log(alpha ,time, $("#mercury.orbit").css("width"));
           progressBar.css({'width': String(time) + '%'});
+          $("#mercury.orbit").css({"width":"+=" + "10px"});
+
           time+=5;
       }
 

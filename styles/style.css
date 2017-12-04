@@ -55,12 +55,22 @@ table {
 #legend{
   width:175px;
   height:150px;
-  border:1px solid;
   z-index: 20;
   padding-left: 5px;
   position: absolute;
+  top: 55%;
+  left:5%;
+}
+
+#info{
+  position: absolute;
   top: 40%;
   left:5%;
+  width: 300px;
+  height: 350px;
+  border-color: white;
+  border:1px solid;
+
 }
 
 .AP{
@@ -101,9 +111,9 @@ body {
   border-color: white;
   width:1px; 
   z-index: 50;
-  -ms-transform: rotate(45deg); /* IE 9 */
-  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-  transform: rotate(45deg);
+  -ms-transform: rotate(23deg); /* IE 9 */
+  -webkit-transform: rotate(23deg); /* Chrome, Safari, Opera */
+  transform: rotate(23deg);
   position: relative;
   top:2px;
 }
