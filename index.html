@@ -17,7 +17,8 @@
       <div id="sun">
       </div>
       <div id="mercury" class="orbit">
-        <div id="axis" class="planet"> <div class="planet"></div> </div>
+        <div class="planet"> <div class="" id="axis"> . </div> </div>
+        
       </div>      
     </div>
   </div>
@@ -108,9 +109,6 @@
 
       function update(){
 
-
-
-        //console.log(String(time) + '%');
         //change time if need be
           if( time == 100)
             time = 0
@@ -129,15 +127,20 @@
           }
 
           let alpha = time / 100 ;
-          
+          /*
           if(time == 25 )
             $("#axis").css({"transform":"rotate(23deg)"});
           else if (time  ==  50)
              $("#axis").css({"transform":"rotate(35deg)"});
           else if(time == 75)
             $("#axis").css({"transform":"rotate(10deg)"});
-
-
+          */
+          /*
+          if(time > 40 && time < 50){
+            console.log("sure");
+            $("#axis").css({"top":"-150px"});
+          }
+          */
 
 
           if(time > 50)
@@ -147,7 +150,7 @@
           if(time == 0)
             $("#mercury.orbit").css({"width":"14em","height":"14em"});  
 
-          console.log(alpha ,time, $("#mercury.orbit").css("width"));
+          //console.log(alpha ,time, $("#mercury.orbit").css("width"));
           progressBar.css({'width': String(time) + '%'});
           $("#mercury.orbit").css({"width":"+=" + "10px"});
 
