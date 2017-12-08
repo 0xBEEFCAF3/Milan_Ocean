@@ -276,3 +276,13 @@ body {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+/*Footer*/
+
+.footer{
+  z-index: 50;
+  position: fixed;
+  color:#fff;
+  top:85%;
+  left:0%;
+}
